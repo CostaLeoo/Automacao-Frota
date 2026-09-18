@@ -296,3 +296,303 @@ Projeto desenvolvido com foco em:
 ---
 
 **Desenvolvido por Leonardo de Carvalho da Costa**
+
+-------------------------------------------------------------------------------------------------
+
+# 🚗 Intelligent Fleet Control Automation
+
+A desktop application developed to automate corporate vehicle trip monitoring by transforming GPS tracking data into structured operational records and automatically updating fleet control spreadsheets.
+
+The project was created to eliminate a repetitive manual workflow in which operators had to individually inspect each vehicle's tracking history, identify the key moments of each trip, and manually enter those timestamps into an Excel spreadsheet.
+
+> 🔒 **Proprietary project. Source code and production data are private. This repository showcases the project's architecture, features, and demonstrations for portfolio purposes only.**
+
+---
+
+## 🎯 The Problem
+
+Fleet monitoring required several manual steps:
+
+1. Access the vehicle tracking platform
+2. Locate the assigned vehicle
+3. Analyze its location history
+4. Identify when the vehicle left the company
+5. Identify when it arrived at the client location
+6. Identify when it left the client location
+7. Identify when it returned to the company
+8. Locate the corresponding employee in the spreadsheet
+9. Manually enter each timestamp
+
+Besides being time-consuming, the process required human interpretation of a large amount of location data.
+
+---
+
+## 💡 The Solution
+
+The application automates this workflow.
+
+The operator provides the daily schedule, and the system processes the remaining information by associating employees, vehicles, and client locations with data retrieved from the tracking system.
+
+Using GPS coordinates and geolocation rules, the application automatically identifies the main events of each trip:
+
+```text
+🏢 COMPANY
+    │
+    │ Departure
+    ▼
+🚗 TRAVELING
+    │
+    │ Arrival
+    ▼
+📍 CLIENT LOCATION
+    │
+    │ Departure
+    ▼
+🚗 RETURN TRIP
+    │
+    │ Arrival
+    ▼
+🏢 COMPANY
+```
+
+The detected timestamps are then automatically recorded in the fleet control spreadsheet.
+
+---
+
+## ⚙️ Key Features
+
+* 📍 Automatic GPS position analysis
+* 🗺️ Entry and exit detection using **geofencing**
+* 🚗 Employee-to-vehicle association
+* 🏢 Support for multiple client locations
+* 🕐 Automatic trip event detection
+* 📊 Automatic Excel spreadsheet updates
+* 🧮 Preservation and updating of spreadsheet structures and formulas
+* 💾 Automatic backups before modifications
+* 🖥️ Desktop graphical interface
+* 🔎 Handling of incomplete or ambiguous trip events
+* 📋 Processing results displayed directly to the operator
+
+---
+
+## 🧠 Trip Detection
+
+One of the core components of the project is the interpretation of vehicle location history.
+
+Instead of relying solely on predefined timestamps, the system analyzes GPS records and transitions between geographical areas to determine relevant trip events.
+
+The main events include:
+
+```text
+Company Departure
+        ↓
+Client Arrival
+        ↓
+Client Departure
+        ↓
+Company Return
+```
+
+The system also handles situations where not every event can be clearly identified in the available tracking history, allowing the application to detect probable movements and stops without automatically interrupting the entire process.
+
+---
+
+## 📍 Geofencing
+
+The application uses geographical coordinates and distance calculations to determine when a vehicle enters or leaves a predefined area.
+
+Each relevant location can be represented by:
+
+```text
+Latitude
+Longitude
+Tolerance Radius
+```
+
+This makes it possible to transform a sequence of raw GPS coordinates into meaningful operational events.
+
+---
+
+## 📊 Excel Integration
+
+After identifying the trip events, the application automatically updates the spreadsheet used for fleet control.
+
+The system includes logic to:
+
+* Locate existing records
+* Insert new records when necessary
+* Fill in detected timestamps
+* Preserve formulas
+* Update calculations
+* Maintain spreadsheet formatting
+* Create backups before making changes
+
+The automation was designed to integrate with the existing operational workflow instead of requiring the company to replace its current spreadsheet structure.
+
+---
+
+## 🛡️ Data Protection
+
+Before modifying the official spreadsheet, the system automatically creates a backup.
+
+```text
+Current Spreadsheet
+        ↓
+Timestamped Backup
+        ↓
+Processing
+        ↓
+Updated Spreadsheet
+```
+
+This ensures that previous versions remain available if data recovery is ever required.
+
+---
+
+## 🖥️ User Interface
+
+The application includes its own desktop interface, allowing employees without programming knowledge to operate the automation.
+
+### Application Demo
+
+```text
+[ ADD APPLICATION GIF / VIDEO HERE ]
+```
+
+### Processing Results
+
+```text
+[ ADD RESULTS SCREENSHOT HERE ]
+```
+
+### Updated Spreadsheet
+
+```text
+[ ADD SPREADSHEET SCREENSHOT HERE ]
+```
+
+> Public demonstrations should always use fictional or anonymized operational data.
+
+---
+
+## 🏗️ Conceptual Architecture
+
+```text
+          DAILY SCHEDULE
+                │
+                ▼
+          DATA PROCESSING
+                │
+                ▼
+        EMPLOYEE / VEHICLE
+                │
+                ▼
+          TRACKING SYSTEM
+                │
+                ▼
+          GPS HISTORY DATA
+                │
+                ▼
+        GEOLOCATION ENGINE
+                │
+                ▼
+         TRIP DETECTION
+                │
+      ┌─────────┼─────────┐
+      ▼         ▼         ▼
+   COMPANY    CLIENT     RETURN
+                │
+                ▼
+          DATA VALIDATION
+                │
+                ▼
+           EXCEL BACKUP
+                │
+                ▼
+        AUTOMATIC UPDATE
+```
+
+---
+
+## 🛠️ Technologies
+
+**Python** — Core application language
+
+**Tkinter** — Desktop graphical interface
+
+**OpenPyXL** — Excel file reading and manipulation
+
+**HTTP Integration** — Communication with services used by the application
+
+**Geolocation / Geofencing** — Vehicle position interpretation
+
+**PyInstaller** — Windows executable distribution
+
+---
+
+## 📈 Impact
+
+The project transforms a manual monitoring and data-entry workflow into an automated process.
+
+### Before
+
+```text
+Find Vehicle
+     ↓
+Analyze GPS History
+     ↓
+Find Departure
+     ↓
+Find Arrival
+     ↓
+Find Client Departure
+     ↓
+Find Return
+     ↓
+Open Excel
+     ↓
+Find Employee
+     ↓
+Enter Timestamps
+```
+
+### After
+
+```text
+Provide Daily Schedule
+        ↓
+Run Automation
+        ↓
+Process GPS Data
+        ↓
+Spreadsheet Updated
+```
+
+Instead of manually searching through location records and entering timestamps, the operator can focus primarily on validating the results produced by the system.
+
+---
+
+## 🔐 Source Code
+
+The source code is not publicly available because the project contains proprietary logic developed for a real operational workflow and integrations used in a corporate environment.
+
+This public repository serves as technical documentation and a demonstration of the project.
+
+No credentials, tracking data, employee information, client information, or production data are publicly available.
+
+---
+
+## 👨‍💻 About the Project
+
+This project was developed with a focus on:
+
+* Business process automation
+* System integration
+* Reduction of repetitive administrative work
+* Geolocation data processing
+* Desktop application development
+* Spreadsheet automation
+
+---
+
+**Developed by Leonardo de Carvalho da Costa**
